@@ -1,164 +1,191 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Racing Website Interactive Features</title>
+<title>PSI Dashboard — Enhanced Visuals</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
+
 <style>
-  body {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background: #0d0d0d;
-    color: #f1f1f1;
-    margin: 0;
-    padding: 0;
-    line-height: 1.7;
-  }
+    body {
+        font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: #0d0d0d;
+        color: #ffffff; /* unchanged */
+    }
 
-  header {
-    text-align: center;
-    background: linear-gradient(135deg, #e53935, #b71c1c);
-    color: white;
-    padding: 70px 20px;
-    animation: fadeIn 1s ease-in;
-  }
+    .glass-card {
+        background: #1a1a1a;
+        border-left: 5px solid #e53935;
+        border-radius: 16px;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.6);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+        border: 1px solid #2a2a2a;
+    }
+    .glass-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.8);
+    }
 
-  header h1 {
-    font-size: 2.5em;
-    margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-  }
+    .title {
+        font-weight: 700;
+        letter-spacing: -0.4px;
+        color: #ff3b3b;
+    }
 
-  header p {
-    font-size: 1.1em;
-    margin-top: 12px;
-    color: #fdd;
-  }
+    .number {
+        font-size: 44px;
+        font-weight: 700;
+        letter-spacing: -1px;
+        color: #ff3b3b;
+    }
 
-  main {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 0 20px;
-  }
+    .label {
+        font-size: 13px;
+        color: #f5f5f5;
+    }
 
-  section {
-    background: #1a1a1a;
-    border-left: 5px solid #e53935;
-    border-radius: 12px;
-    padding: 22px;
-    margin-bottom: 26px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
+    table thead { color: #ffffff;
+        background: #111;
+    }
+    table tbody tr:hover {
+        background: rgba(229, 57, 53, 0.15);
+        transition: 0.2s;
+    }
 
-  section:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 18px rgba(0,0,0,0.6);
-  }
-
-  h2 {
-    color: #ff5252;
-    margin-top: 0;
-  }
-
-  p {
-    color: #ddd;
-    text-indent: 2em;
-    margin: 10px 0;
-  }
-
-  p:first-of-type {
-    text-indent: 0;
-  }
-
-  footer {
-    text-align: center;
-    padding: 30px;
-    color: #aaa;
-    font-size: 0.9em;
-    border-top: 1px solid #333;
-    background: #111;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @media (max-width: 600px) {
-    header h1 { font-size: 1.8em; }
-    main { padding: 0 15px; }
-    section { padding: 15px; }
-  }
+    @keyframes fadeIn {
+        from {opacity: 0; transform: translateY(10px);} 
+        to {opacity: 1; transform: translateY(0);} 
+    }
+.neon-blue { color: #ff3b3b; }
+table td, table th { color: #ffffff; }
+.gold-text { color: #3399ff; }
 </style>
 </head>
-<body>
+<body class="p-8">
 
-<header>
-  <h1>Racing Website Interactive Features</h1>
-  <p>Driving digital excitement through speed, data, and interaction.</p>
-</header>
+<div class="glass-card p-8 mb-10 fade-in">
+    <h1 class="text-4xl title neon-blue">Singapore PSI Monitoring</h1>
+    <p id="lastUpdated" class="label mt-2">Last updated: --</p>
+</div>
 
-<main>
-  <section>
-    <p>To create an immersive, adrenaline-fueled racing website, interactivity must go beyond visuals. The platform should allow users to *feel* the thrill of the race — from real-time updates to fan engagement features that make every visitor part of the racing community. Below are feature concepts designed to turn a static website into a dynamic digital pit stop for motorsport enthusiasts.</p>
-  </section>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 fade-in">
 
-  <section>
-    <h2>Real-time Race Data</h2>
-    <p>Offer live race dashboards that display current standings, lap times, weather updates, and pit stop information in real time. Include a sleek countdown timer for upcoming events, pushing timely notifications or pop-ups so fans never miss a start. Integrate dynamic 3D maps showing car positions and motion to make the experience visually captivating.</p>
-  </section>
+    <div class="glass-card p-6 text-center">
+        <p class="label">Overall PSI</p>
+        <p id="overallPsi" class="number mt-2 neon-blue">--</p>
+    </div>
 
-  <section>
-    <h2>Interactive Buttons & Mini-Game</h2>
-    <p>Feature a bold “Join the Race” button, enabling users to participate in virtual time-trials or join fantasy race leagues. Add a lightweight, keyboard-controlled mini racing game that lets visitors test their reflexes — complete with leaderboards, sounds of roaring engines, and cheering crowds for full immersion.</p>
-  </section>
+    <div class="glass-card p-6 text-center">
+        <p class="label">PM2.5 Level</p>
+        <p id="pm25Level" class="number mt-2 neon-blue">--</p>
+    </div>
 
-  <section>
-    <h2>Voting & Predictions</h2>
-    <p>Engage fans with polls and prediction events: “Who will cross the finish line first?” or “Which team will dominate this season?” Display real-time voting bars and results that update live during the race, turning passive viewers into active participants and generating social buzz.</p>
-  </section>
+    <div class="glass-card p-6 text-center">
+        <p class="label">Worst Hit Area</p>
+        <p id="worstArea" class="number mt-2 gold-text text-3xl">--</p>
+    </div>
 
-  <section>
-    <h2>User Comments & Live Chat</h2>
-    <p>Integrate comment sections beneath news articles and live chat rooms during races. Fans can exchange thoughts, share memes, and debate outcomes in real time, fostering a sense of belonging. Add moderator tools and emoji reactions to keep conversations fun and lively.</p>
-  </section>
+</div>
 
-  <section>
-    <h2>Social Sharing & Highlights</h2>
-    <p>Make sharing as fast as the races themselves. Enable one-click sharing of race clips, statistics, or leaderboard snapshots directly to social platforms like WeChat, Weibo, or Twitter. Use AI tools to automatically generate short highlight reels for fans to share their favorite race moments effortlessly.</p>
-  </section>
+<div class="glass-card p-8 fade-in">
+    <h2 class="text-2xl title mb-4">PSI Parameters</h2>
+    <table class="w-full text-sm text-white">
+        <thead class="border-b border-gray-300 text-white text-xs uppercase">
+            <tr>
+                <th class="py-2 text-left">Parameter</th>
+                <th class="py-2 text-left">National</th>
+                <th class="py-2 text-left">Central</th>
+                <th class="py-2 text-left">East</th>
+                <th class="py-2 text-left">West</th>
+                <th class="py-2 text-left">North</th>
+                <th class="py-2 text-left">South</th>
+            </tr>
+        </thead>
+        <tbody id="psiTable"></tbody>
+    </table>
+</div>
 
-  <section>
-    <h2>Virtual Rewards System</h2>
-    <p>Gamify engagement by offering points for comments, votes, and game participation. Points can unlock special titles like “Speed Enthusiast” or “Track Legend,” or be redeemed for digital collectibles and exclusive merchandise. This encourages repeat visits and community growth.</p>
-  </section>
+<script>
+    const tableBody = document.getElementById("psiTable");
+    const overallPsiEl = document.getElementById("overallPsi");
+    const pm25El = document.getElementById("pm25Level");
+    const worstAreaEl = document.getElementById("worstArea");
+    const lastUpdatedEl = document.getElementById("lastUpdated");
 
-  <section>
-    <h2>Custom Fan Pages</h2>
-    <p>Give users their own customizable “garage” pages — where they can select favorite drivers, display stats, achievements, and trophies earned through site participation. A personalized dashboard enhances loyalty and allows fans to proudly showcase their racing identity.</p>
-  </section>
+    const parameters = [
+        "o3_sub_index", "pm25_sub_index", "pm10_sub_index",
+        "co_sub_index", "so2_sub_index", "no2_sub_index",
+        "psi_twenty_four_hourly"
+    ];
 
-  <section>
-    <h2>Live Race Interaction</h2>
-    <p>Integrate real-time “bullet comments” (danmu) overlaying live video streams. Fans can shout encouragement or reactions as the race unfolds, creating a stadium-like atmosphere online. Moderated, fast-flowing, and synchronized — it turns live viewing into a shared celebration of speed.</p>
-  </section>
+    const names = {
+        o3_sub_index: "O₃ Index",
+        pm25_sub_index: "PM2.5 Index",
+        pm10_sub_index: "PM10 Index",
+        co_sub_index: "CO Index",
+        so2_sub_index: "SO₂ Index",
+        no2_sub_index: "NO₂ Index",
+        psi_twenty_four_hourly: "24h PSI"
+    };
 
-  <section>
-    <h2>Winners’ Honor Board</h2>
-    <p>Feature a Hall of Fame showcasing top-performing users — prediction winners, mini-game champions, and active commentators. Display custom badges, animated trophies, and fan levels, recognizing their contributions and motivating others to climb the ranks.</p>
-  </section>
+    function rand(base) {
+        return Math.round(base * (0.9 + Math.random() * 0.2));
+    }
 
-  <section>
-    <h2>Beyond the Finish Line</h2>
-    <p>The ultimate goal of a racing website is not just to inform but to *ignite passion*. With these features, fans don’t just observe — they participate, compete, and connect. The website becomes a virtual racetrack where every click, comment, and vote fuels the engine of community excitement.</p>
-  </section>
-</main>
+    function generateMock() {
+        return {
+            timestamp: new Date(),
+            readings: parameters.reduce((acc, key) => {
+                acc[key] = {
+                    national: rand(50),
+                    central: rand(45),
+                    east: rand(40),
+                    west: rand(55),
+                    north: rand(48),
+                    south: rand(52)
+                };
+                return acc;
+            }, {})
+        };
+    }
 
-<footer>
-  <p>© 2025 Racing Interactive Concept Page — Designed for UX & Digital Experience Innovation.</p>
-</footer>
+    function render(data) {
+        const r = data.readings;
+
+        overallPsiEl.textContent = r["psi_twenty_four_hourly"].national;
+        pm25El.textContent = r["pm25_sub_index"].national;
+
+        const psi = r["psi_twenty_four_hourly"];
+        const worst = Object.keys(psi).reduce((a, b) => psi[a] > psi[b] ? a : b);
+
+        worstAreaEl.textContent = worst;
+        lastUpdatedEl.textContent = "Last updated: " + data.timestamp.toLocaleString();
+
+        tableBody.innerHTML = parameters
+            .map(p => `
+                <tr class="border-t border-gray-200 hover:bg-gray-100/50">
+                    <td class="py-2">${names[p]}</td>
+                    <td class="py-2">${r[p].national}</td>
+                    <td class="py-2">${r[p].central}</td>
+                    <td class="py-2">${r[p].east}</td>
+                    <td class="py-2">${r[p].west}</td>
+                    <td class="py-2">${r[p].north}</td>
+                    <td class="py-2">${r[p].south}</td>
+                </tr>
+            `)
+            .join("");
+    }
+
+    function init() {
+        render(generateMock());
+        setInterval(() => {
+            render(generateMock());
+        }, 60000);
+    }
+
+    init();
+</script>
 
 </body>
 </html>
